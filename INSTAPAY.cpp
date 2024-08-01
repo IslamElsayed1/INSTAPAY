@@ -71,11 +71,11 @@ public:
          if (user.id == id && user.password == password)
          {
             cout << "Login successful!\n";
-            return user; // إرجاع نسخة من المستخدم
+            return user;
          }
       }
       cout << "Invalid ID or Password.\n";
-      return User(); // إرجاع كائن افتراضي إذا لم يتم العثور على المستخدم
+      return User();
    }
 
    bool transferMoney(User &sender, const string &receiverID, double amount, const PaymentMethod *paymentMethod)
@@ -89,12 +89,12 @@ public:
             {
                sender.balance -= totalAmount;
                user.balance += amount;
-               cout << "Transfer successful! Service charge: $" << paymentMethod->getServiceCharge() << "\n";
                return true;
+               // cout << "Transfer successful! Service charge: $" << paymentMethod->getServiceCharge() << "\n";
             }
             else
             {
-               cout << "Insufficient balance.\n";
+               // cout << "Insufficient balance.\n";
                return false;
             }
          }
@@ -145,7 +145,7 @@ int main()
          cin >> id;
          cout << "Enter your Password: ";
          cin >> password;
-         loggedInUser = account.login(id, password); // استخدام القيمة المسترجعة
+         loggedInUser = account.login(id, password);
          if (loggedInUser.id != "")
          {
             while (true)
@@ -156,7 +156,7 @@ int main()
 
                if (choice == 3)
                {
-                  loggedInUser = User(); // تعيين كائن افتراضي
+                  loggedInUser = User();
                   break;
                }
                else if (choice == 2)
@@ -194,9 +194,14 @@ int main()
                   double amount;
                   cout << "Enter amount to send: ";
                   cin >> amount;
-
-                  account.transferMoney(loggedInUser, id, amount, paymentMethod);
-
+                  if (account.transferMoney(loggedInUser, id, amount, paymentMethod))
+                  {
+                     cout << "Transfer successful! Service charge: $" << paymentMethod->getServiceCharge() << "\n";
+                  }
+                  else
+                  {
+                     cout << "Failed to send money. Please check your balance and try again.\n";
+                  }
                   delete paymentMethod;
                }
                else
