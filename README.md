@@ -3,16 +3,24 @@ This program simulates a simple banking system similar to InstaPay where users c
 
 ## Object-Oriented Programming Techniques
 This program utilizes several OOP concepts:
+
 Classes and Objects: Defined classes such as User, PaymentMethod, Visa, Fawry, and Account.
+
 Inheritance: Visa and Fawry classes inherit from the PaymentMethod abstract class.
+
 Polymorphism: The PaymentMethod class defines a common interface for different payment methods, and the derived classes (Visa and Fawry) implement this interface.
+
 Encapsulation: User data and account operations are encapsulated within the User and Account classes.
+
 Abstraction: The PaymentMethod class is abstract and defines virtual functions that must be implemented by derived classes.
 
 ## Features
 User Registration: Users can create an account with a unique ID, password, and initial balance.
+
 User Login: Registered users can login using their ID and password.
+
 Balance Display: Logged-in users can view their current balance.
+
 Money Transfer: Users can transfer money to other registered users using different payment methods (Visa and Fawry), each with its service charge.
 
 ### Finally
